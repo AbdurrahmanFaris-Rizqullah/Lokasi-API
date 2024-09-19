@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Lokasi API",
+      "version": "1.0.0",
+      "description": "API untuk mengelola lokasi"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5000",
+        "description": "Local server"
+      }
+    ],
+    "paths": {
+      "/lokasi": {
+        "get": {
+          "summary": "Dapatkan semua lokasi",
+          "responses": {
+            "200": {
+              "description": "Daftar semua lokasi"
+            }
+          }
+        },
+        "post": {
+          "summary": "Buat lokasi baru",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lokasi"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Lokasi berhasil dibuat"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Lokasi": {
+          "type": "object",
+          "properties": {
+            "nama": {
+              "type": "string"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "deskripsi": {
+              "type": "string"
+            },
+            "kategori": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+  
