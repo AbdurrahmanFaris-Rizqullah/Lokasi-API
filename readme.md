@@ -1,7 +1,7 @@
 ## **README.md**
 
 # Lokasi API
-![Dashboard Swagger UI]("F:\KULIAH\Belajar Coding\backend\img\bg-1.jpg")
+![Dashboard Swagger UI]("..\backend\img\bg-1.jpg")
 
 Lokasi API adalah sebuah RESTful API yang memungkinkan pengelolaan data lokasi geografis. API ini mendukung operasi CRUD (Create, Read, Update, Delete) untuk data lokasi yang mencakup informasi seperti nama lokasi, koordinat (latitude & longitude), deskripsi, dan kategori.
 
