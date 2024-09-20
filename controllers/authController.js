@@ -22,7 +22,7 @@ exports.register = async (req, res) => {
     };
 
     // Buat token JWT
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
     res.status(201).json({ token });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -51,7 +51,7 @@ exports.login = async (req, res) => {
       };
   
       // Buat token JWT
-      const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
       res.json({ token });
     } catch (error) {
       res.status(500).json({ message: error.message });

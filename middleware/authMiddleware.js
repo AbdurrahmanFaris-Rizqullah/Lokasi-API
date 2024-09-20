@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 
     try {
         // Verifikasi token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
         // Masukkan user dari token ke req.user
         req.user = decoded.user;
