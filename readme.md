@@ -40,7 +40,7 @@ Lokasi API adalah sebuah RESTful API yang memungkinkan pengelolaan data lokasi g
 #### 1. Clone repository
 
 ```bash
-git clone https://github.com/username/lokasi-api.git
+https://github.com/AbdurrahmanFaris-Rizqullah/Lokasi-API.git
 ```
 
 #### 2. Install dependencies
