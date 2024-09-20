@@ -1,100 +1,204 @@
-# Lokasi-API
+## **README.md**
 
-_Versi_: 1.0.0  
-_API_: Untuk mengelola lokasi
+# Lokasi API
 
-## Deskripsi
+Lokasi API adalah sebuah RESTful API yang memungkinkan pengelolaan data lokasi geografis. API ini mendukung operasi CRUD (Create, Read, Update, Delete) untuk data lokasi yang mencakup informasi seperti nama lokasi, koordinat (latitude & longitude), deskripsi, dan kategori.
 
-Lokasi API adalah sebuah API sederhana yang memungkinkan pengguna untuk mendapatkan daftar lokasi dan menambahkan lokasi baru. API ini didokumentasikan menggunakan _Swagger UI_ sehingga memudahkan untuk melakukan pengujian dan eksplorasi.
+### **Fitur:**
 
-## Prasyarat
+- Menambahkan lokasi baru.
+- Mengambil semua lokasi.
+- Mengambil lokasi berdasarkan ID.
+- Mencari lokasi berdasarkan kategori.
+- Memperbarui informasi lokasi.
+- Menghapus lokasi.
+- Autentikasi pengguna menggunakan JWT untuk mengamankan endpoint CRUD.
 
-Pastikan kamu telah menginstal beberapa hal berikut sebelum menjalankan aplikasi ini:
+---
 
-1. _Node.js_ (versi terbaru yang stabil)  
-   [Download Node.js](https://nodejs.org/)
+### **Teknologi yang Digunakan:**
 
-2. _Nodemon_ (opsional, untuk development)  
-   Instalasi nodemon dilakukan menggunakan npm:
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT (JSON Web Token)
+- Swagger untuk dokumentasi API
 
-```bash
-   npm install -g nodemon
-```
+---
 
-3. _Package Dependencies_  
-   Aplikasi ini menggunakan beberapa dependensi yang harus diinstal melalui _npm_. Pastikan kamu menjalankan perintah berikut untuk menginstalnya:
+### **Persyaratan:**
 
-```bash
-   npm install
-```
+- Node.js versi 14.x atau lebih tinggi
+- MongoDB (Lokal atau MongoDB Atlas)
+- NPM (Node Package Manager)
 
-## Menjalankan Aplikasi
+---
 
-Ikuti langkah-langkah berikut untuk menjalankan aplikasi:
+### **Cara Menjalankan Aplikasi:**
 
-1. _Clone repositori_ ini atau pindahkan file ke dalam folder lokal.
-
-2. Buka terminal atau command prompt, lalu arahkan ke direktori aplikasi:
-
-```bash
-  cd lokasi-api
-```
-
-3. Pastikan semua dependensi sudah terpasang:
+#### 1. Clone repository
 
 ```bash
-  npm install
+git clone https://github.com/username/lokasi-api.git
 ```
 
-4. _Menjalankan Server_  
-   Kamu bisa menjalankan server menggunakan Node.js atau _nodemon_ (untuk reload otomatis saat ada perubahan):
+#### 2. Install dependencies
 
-   - _Menggunakan Node.js_:
+Pindah ke direktori proyek dan jalankan perintah berikut untuk menginstal semua dependencies yang diperlukan:
 
 ```bash
-     node index.js
+cd lokasi-api
+npm install
 ```
 
-- _Menggunakan Nodemon_ (untuk pengembangan):
+#### 3. Buat file `.env`
+
+Buat file `.env` di root folder proyek dengan isi berikut:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_uri
+SECRET_KEY=your_jwt_secret_key
+```
+
+Gantilah `your_mongodb_uri` dengan URL MongoDB Anda dan `your_jwt_secret_key` dengan secret key untuk JWT.
+
+#### 4. Menjalankan Aplikasi
+
+Setelah konfigurasi selesai, Anda bisa menjalankan aplikasi menggunakan perintah berikut:
 
 ```bash
-     nodemon index.js
+npm start
 ```
 
-5. _Buka Swagger UI_  
-   Setelah server berhasil dijalankan, buka browser dan akses dokumentasi Swagger UI di:
+Server akan berjalan di `http://localhost:5000`.
 
-```
-   http://localhost:5000/api-docs
-```
+#### 5. Akses Dokumentasi API
 
-6. Kamu akan melihat tampilan Swagger UI di mana kamu bisa menguji endpoint yang tersedia.
+Anda dapat mengakses dokumentasi API menggunakan Swagger UI di:
 
-## Endpoints
-
-1. _GET /lokasi_  
-   Mendapatkan semua lokasi yang ada.
-
-2. _POST /lokasi_  
-   Menambahkan lokasi baru dengan mengirimkan data dalam format JSON.
-
-## Contoh Body Request (POST /lokasi)
-
-Untuk menambahkan lokasi baru, gunakan format berikut dalam body request:
-
-```json
-{
-  "nama": "Lokasi A",
-  "latitude": -7.250445,
-  "longitude": 112.768845,
-  "deskripsi": "Ini adalah lokasi A",
-  "kategori": "umum"
-}
+```bash
+http://localhost:5000/api-docs
 ```
 
-## Teknologi yang Digunakan
+---
 
-- _Node.js_: JavaScript runtime environment
-- _Express_: Web framework for Node.js
-- _Swagger UI_: Tool untuk mendokumentasikan dan menguji API
-- _Nodemon_: Tool untuk development yang me-reload otomatis saat ada perubahan pada file
+### **Endpoint API**
+
+#### 1. **Autentikasi**
+
+- **POST** `/auth/register`  
+  Daftarkan pengguna baru.  
+  Body:  
+  ```json
+  {
+    "username": "your_username",
+    "password": "your_password"
+  }
+  ```
+
+- **POST** `/auth/login`  
+  Login pengguna yang sudah terdaftar.  
+  Body:  
+  ```json
+  {
+    "username": "your_username",
+    "password": "your_password"
+  }
+  ```
+  Response: JWT token yang digunakan untuk mengakses endpoint yang memerlukan autentikasi.
+
+#### 2. **Lokasi**
+
+- **GET** `/lokasi`  
+  Mengambil semua lokasi yang ada.
+
+- **GET** `/lokasi/:id`  
+  Mengambil lokasi berdasarkan ID.
+
+- **GET** `/lokasi/kategori/:kategori`  
+  Mencari lokasi berdasarkan kategori.
+
+- **POST** `/lokasi`  
+  Menambahkan lokasi baru.  
+  Body:  
+  ```json
+  {
+    "nama": "Lokasi A",
+    "latitude": -7.250445,
+    "longitude": 112.768845,
+    "deskripsi": "Deskripsi lokasi A",
+    "kategori": "kategori1"
+  }
+  ```
+
+- **PUT** `/lokasi/:id`  
+  Memperbarui informasi lokasi berdasarkan ID.  
+  Body:  
+  ```json
+  {
+    "nama": "Lokasi B",
+    "latitude": -7.250445,
+    "longitude": 112.768845,
+    "deskripsi": "Deskripsi lokasi B",
+    "kategori": "kategori2"
+  }
+  ```
+
+- **DELETE** `/lokasi/:id`  
+  Menghapus lokasi berdasarkan ID.
+
+---
+
+### **Validasi Data:**
+
+- **Nama Lokasi**: Wajib diisi, tipe data `String`.
+- **Koordinat**: 
+  - Latitude antara -90 hingga 90.
+  - Longitude antara -180 hingga 180.
+- **Kategori**: Wajib diisi, tipe data `String`.
+  
+Jika data yang dimasukkan tidak valid, API akan memberikan pesan kesalahan yang sesuai.
+
+---
+
+### **Dokumentasi API**
+
+Dokumentasi lengkap API dapat diakses melalui Swagger di endpoint `/api-docs`:
+
+```
+http://localhost:5000/api-docs
+```
+
+Swagger UI akan menampilkan seluruh endpoint yang tersedia beserta detail permintaan dan responnya.
+
+---
+
+### **Struktur Folder**
+
+```
+/lokasi-api
+│
+├── /controllers
+│   ├── authController.js     # Kontroller untuk autentikasi pengguna
+│   └── lokasiController.js   # Kontroller untuk pengelolaan data lokasi
+│
+├── /middleware
+│   └── authMiddleware.js     # Middleware untuk autentikasi JWT
+│
+├── /models
+│   ├── lokasi.js             # Model schema MongoDB untuk lokasi
+│   └── user.js               # Model schema MongoDB untuk pengguna
+│
+├── /routes
+│   ├── authRoutes.js         # Route untuk autentikasi pengguna
+│   └── lokasiRoutes.js       # Route untuk pengelolaan data lokasi
+│
+├── /swagger
+│   └── swagger.json          # Dokumentasi API Swagger
+│
+├── .env                      # File konfigurasi environment variables
+├── index.js                  # File utama aplikasi
+└── README.md                 # Dokumentasi proyek
+```

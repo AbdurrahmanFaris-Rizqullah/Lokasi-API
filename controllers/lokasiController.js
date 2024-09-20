@@ -1,13 +1,23 @@
 const Lokasi = require('../models/lokasi');
 
-// Tambahkan Lokasi Baru
+// Tambah Lokasi Baru
 exports.createLokasi = async (req, res) => {
+  const { nama, latitude, longitude, deskripsi, kategori } = req.body;
+
+  if (!nama || !latitude || !longitude || !kategori) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  if (latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) {
+    return res.status(400).json({ message: 'Invalid coordinates' });
+  }
+
   try {
-    const lokasi = new Lokasi(req.body);
+    const lokasi = new Lokasi({ nama, latitude, longitude, deskripsi, kategori });
     await lokasi.save();
     res.status(201).json(lokasi);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -34,18 +44,15 @@ exports.getLokasiById = async (req, res) => {
   }
 };
 
-// Cari Lokasi Berdasarkan Kategori
-exports.getLokasiByKategori = async (req, res) => {
-  try {
-    const lokasi = await Lokasi.find({ kategori: req.params.kategori });
-    res.status(200).json(lokasi);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-// Perbarui Lokasi
+// Update Lokasi
 exports.updateLokasi = async (req, res) => {
+  const { latitude, longitude } = req.body;
+
+  if (latitude && (latitude < -90 || latitude > 90) ||
+      longitude && (longitude < -180 || longitude > 180)) {
+    return res.status(400).json({ message: 'Invalid coordinates' });
+  }
+
   try {
     const lokasi = await Lokasi.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!lokasi) {
@@ -53,7 +60,7 @@ exports.updateLokasi = async (req, res) => {
     }
     res.status(200).json(lokasi);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 

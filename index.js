@@ -4,24 +4,29 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 require('dotenv').config();
 
-const app = express(); // Pindahkan inisialisasi app ke sini
+const app = express();
 const lokasiRoutes = require('./routes/lokasiRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 // Middleware untuk parsing JSON
 app.use(express.json());
 
-// Swagger setup
-app.use('/lokasi-api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Swagger setup (Dokumentasi API)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('Could not connect to MongoDB', err));
 
+// Root route untuk test server
+app.get('/', (req, res) => {
+    res.send('API is running');
+});
+
 // Routes
-app.use('/auth', authRoutes); // Pindahkan ke sini setelah inisialisasi app
-app.use('/lokasi', lokasiRoutes);
+app.use('/api/auth', authRoutes);  // Untuk autentikasi
+app.use('/api/lokasi', lokasiRoutes);  // Untuk operasi lokasi
 
 // Start server
 const PORT = process.env.PORT || 5000;
