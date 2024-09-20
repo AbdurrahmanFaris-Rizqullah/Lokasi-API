@@ -19,8 +19,9 @@ Content-Type: application/json
 GET http://localhost:5000/
 
 ###
-POST http://localhost:5000/api/auth/register 
+POST http://localhost:5000/api/lokasi
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZlZDVhYWZmNTBlYjJlYzgzOTE5ZDQ5In0sImlhdCI6MTcyNjgzMjYzMCwiZXhwIjoxNzI2ODM2MjMwfQ._Gn6VViiN6b2dfvGKfcHFsSao17j1_XP5fUjG_h_H64
 
 {
   "nama": "string",
@@ -29,3 +30,41 @@ Content-Type: application/json
   "deskripsi": "string",
   "kategori": "string"
 }
+
+###
+POST http://localhost:5000/api/lokasi
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZlZDVhYWZmNTBlYjJlYzgzOTE5ZDQ5In0sImlhdCI6MTcyNjgzMjYzMCwiZXhwIjoxNzI2ODM2MjMwfQ._Gn6VViiN6b2dfvGKfcHFsSao17j1_XP5fUjG_h_H64
+
+{
+  "nama": "aldo",
+  "latitude": 12,
+  "longitude": 120,
+  "deskripsi": "adbjdvakdbcodw vadv",
+  "kategori": "ngopi"
+}
+
+###
+GET http://localhost:5000/api/lokasi
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZlZDVhYWZmNTBlYjJlYzgzOTE5ZDQ5In0sImlhdCI6MTcyNjgzMjYzMCwiZXhwIjoxNzI2ODM2MjMwfQ._Gn6VViiN6b2dfvGKfcHFsSao17j1_XP5fUjG_h_H64
+
+###
+GET http://localhost:5000/api/lokasi/66ed6602dd15d64b9ea01a55
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZlZDVhYWZmNTBlYjJlYzgzOTE5ZDQ5In0sImlhdCI6MTcyNjgzMjYzMCwiZXhwIjoxNzI2ODM2MjMwfQ._Gn6VViiN6b2dfvGKfcHFsSao17j1_XP5fUjG_h_H64
+
+###
+PUT http://localhost:5000/api/lokasi/66ed6602dd15d64b9ea01a55
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZlZDVhYWZmNTBlYjJlYzgzOTE5ZDQ5In0sImlhdCI6MTcyNjgzMjYzMCwiZXhwIjoxNzI2ODM2MjMwfQ._Gn6VViiN6b2dfvGKfcHFsSao17j1_XP5fUjG_h_H64
+
+{
+  "nama": "aldi",
+  "latitude": 21,
+  "longitude": 130,
+  "deskripsi": "adbjdvakddv",
+  "kategori": "makan"
+}
+
+###
+GET  http://localhost:5000/api/lokasi/kategori/makan
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZlZDVhYWZmNTBlYjJlYzgzOTE5ZDQ5In0sImlhdCI6MTcyNjgzMjYzMCwiZXhwIjoxNzI2ODM2MjMwfQ._Gn6VViiN6b2dfvGKfcHFsSao17j1_XP5fUjG_h_H64

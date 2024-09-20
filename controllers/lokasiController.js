@@ -28,7 +28,7 @@ exports.createLokasi = async (req, res) => {
 exports.getAllLokasi = async (req, res) => {
   try {
     const lokasi = await Lokasi.find();
-    res.status(200).json(lokasi);
+    res.status(200).json({ status: true, data: lokasi });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -41,7 +41,7 @@ exports.getLokasiById = async (req, res) => {
     if (!lokasi) {
       return res.status(404).json({ message: "Lokasi tidak ditemukan" });
     }
-    res.status(200).json(lokasi);
+    res.status(200).json({ status: true, data: lokasi });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -60,7 +60,7 @@ exports.updateLokasi = async (req, res) => {
     if (!lokasi) {
       return res.status(404).json({ message: "Lokasi tidak ditemukan" });
     }
-    res.status(200).json(lokasi);
+    res.status(200).json({ status: true, data: lokasi });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -73,7 +73,19 @@ exports.deleteLokasi = async (req, res) => {
     if (!lokasi) {
       return res.status(404).json({ message: "Lokasi tidak ditemukan" });
     }
-    res.status(200).json({ message: "Lokasi berhasil dihapus" });
+    res.status(200).json({ status: true, message: "Lokasi berhasil dihapus" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.searchKategori = async (req, res) => {
+  try {
+    const lokasi = await Lokasi.find({ kategori: req.params.kategori });
+    if (lokasi.length === 0) {
+      return res.status(404).json({ message: "Kategori tidak ditemukan" });
+    }
+    res.status(200).json({ status: true, data: lokasi });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -9,5 +9,6 @@ router.get("/", auth, lokasiController.getAllLokasi); // Membutuhkan token JWT
 router.get("/:id", auth, lokasiController.getLokasiById); // Membutuhkan token JWT
 router.put("/:id", auth, lokasiController.updateLokasi); // Membutuhkan token JWT
 router.delete("/:id", auth, lokasiController.deleteLokasi); // Membutuhkan token JWT
+router.get("/kategori/:kategori", auth, lokasiController.searchKategori);
 
 module.exports = router;
