@@ -23,7 +23,7 @@ exports.register = async (req, res) => {
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "1h" });
     res.status(201).json({
       status: true,
-      body: user,
+      data: user,
       token: token,
       oldPw: password,
     });
@@ -49,7 +49,10 @@ exports.login = async (req, res) => {
 
     const payload = { user: { id: user.id } };
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "1h" });
-    res.json({ token });
+    res.json({
+      status: true,
+      token: token,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

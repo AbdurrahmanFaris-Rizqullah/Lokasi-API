@@ -88,7 +88,7 @@
         }
       }
     },
-    "/lokasi": {
+    "/api/lokasi": {
       "get": {
         "summary": "Dapatkan semua lokasi",
         "responses": {
@@ -134,7 +134,7 @@
         ]
       }
     },
-    "/lokasi/{id}": {
+    "/api/lokasi/{id}": {
       "get": {
         "summary": "Dapatkan lokasi berdasarkan ID",
         "parameters": [
@@ -232,7 +232,7 @@
         ]
       }
     },
-    "/lokasi/kategori/{kategori}": {
+    "/api/lokasi/kategori/{kategori}": {
       "get": {
         "summary": "Cari lokasi berdasarkan kategori",
         "parameters": [
