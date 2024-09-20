@@ -12,18 +12,105 @@
       }
     ],
     "paths": {
+      "/auth/register": {
+        "post": {
+          "summary": "Register user baru",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["username", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "User berhasil didaftarkan"
+            },
+            "400": {
+              "description": "Request tidak valid"
+            }
+          }
+        }
+      },
+      "/auth/login": {
+        "post": {
+          "summary": "Login untuk mendapatkan token JWT",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["username", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Token JWT berhasil didapatkan",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "token": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Username atau password salah"
+            }
+          }
+        }
+      },
       "/lokasi": {
         "get": {
           "summary": "Dapatkan semua lokasi",
           "responses": {
             "200": {
-              "description": "Daftar semua lokasi"
+              "description": "Daftar semua lokasi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Lokasi"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "post": {
           "summary": "Buat lokasi baru",
           "requestBody": {
+            "required": true,
             "content": {
               "application/json": {
                 "schema": {
@@ -35,6 +122,145 @@
           "responses": {
             "201": {
               "description": "Lokasi berhasil dibuat"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          },
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ]
+        }
+      },
+      "/lokasi/{id}": {
+        "get": {
+          "summary": "Dapatkan lokasi berdasarkan ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detail lokasi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Lokasi"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Lokasi tidak ditemukan"
+            }
+          }
+        },
+        "put": {
+          "summary": "Perbarui lokasi berdasarkan ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lokasi"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Lokasi berhasil diperbarui"
+            },
+            "404": {
+              "description": "Lokasi tidak ditemukan"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          },
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ]
+        },
+        "delete": {
+          "summary": "Hapus lokasi berdasarkan ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lokasi berhasil dihapus"
+            },
+            "404": {
+              "description": "Lokasi tidak ditemukan"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          },
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ]
+        }
+      },
+      "/lokasi/kategori/{kategori}": {
+        "get": {
+          "summary": "Cari lokasi berdasarkan kategori",
+          "parameters": [
+            {
+              "name": "kategori",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Daftar lokasi berdasarkan kategori",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Lokasi"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Tidak ada lokasi dalam kategori ini"
             }
           }
         }
@@ -49,10 +275,16 @@
               "type": "string"
             },
             "latitude": {
-              "type": "number"
+              "type": "number",
+              "format": "float",
+              "minimum": -90,
+              "maximum": 90
             },
             "longitude": {
-              "type": "number"
+              "type": "number",
+              "format": "float",
+              "minimum": -180,
+              "maximum": 180
             },
             "deskripsi": {
               "type": "string"
@@ -60,9 +292,22 @@
             "kategori": {
               "type": "string"
             }
-          }
+          },
+          "required": ["nama", "latitude", "longitude", "deskripsi", "kategori"]
+        }
+      },
+      "securitySchemes": {
+        "BearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
         }
       }
-    }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
   }
   
