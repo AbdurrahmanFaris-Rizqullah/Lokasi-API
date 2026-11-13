@@ -90,7 +90,7 @@ http://localhost:5000/api-docs
 ---
 
 ### **Tutorial Swagger**
-https://github.com/AbdurrahmanFaris-Rizqullah/Lokasi-API/raw/main/doc/lokasi-js-tutorial.mp4
+[![Tutorial Swagger API Lokasi](https://img.youtube.com/vi/ZEIiHlHfouQ.jpg)](https://www.youtube.com/watch?v=ZEIiHlHfouQ)
 
 ### **Endpoint API**
 
