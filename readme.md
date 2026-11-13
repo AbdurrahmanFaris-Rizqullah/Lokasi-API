@@ -90,7 +90,7 @@ http://localhost:5000/api-docs
 ---
 
 ### **Tutorial Swagger**
-[![Tutorial Swagger API Lokasi](https://img.youtube.com/vi/ZEIiHlHfouQ.jpg)](https://www.youtube.com/watch?v=ZEIiHlHfouQ)
+[![Tutorial Swagger API Lokasi](https://i.ytimg.com/vi/ZEIiHlHfouQ/hqdefault.jpg)](https://www.youtube.com/watch?v=ZEIiHlHfouQ)
 
 ### **Endpoint API**
 
