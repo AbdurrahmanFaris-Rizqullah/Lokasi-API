@@ -1,7 +1,7 @@
 ## **README.md**
 
 # Lokasi API
-![Dashboard Swagger UI]("..\img\bg-1.jpg")
+<img width="1537" height="884" alt="Screenshot 2026-11-13 160554" src="https://github.com/user-attachments/assets/73a3fcd2-321c-4f5e-93db-4bf19a50b15d" />
 
 Lokasi API adalah sebuah RESTful API yang memungkinkan pengelolaan data lokasi geografis. API ini mendukung operasi CRUD (Create, Read, Update, Delete) untuk data lokasi yang mencakup informasi seperti nama lokasi, koordinat (latitude & longitude), deskripsi, dan kategori.
 
@@ -70,7 +70,11 @@ Gantilah `your_mongodb_uri` dengan URL MongoDB Anda dan `your_jwt_secret_key` de
 Setelah konfigurasi selesai, Anda bisa menjalankan aplikasi menggunakan perintah berikut:
 
 ```bash
-npm start
+npm run dev 
+```
+atau 
+```bash
+npm start 
 ```
 
 Server akan berjalan di `http://localhost:5000`.
@@ -84,6 +88,10 @@ http://localhost:5000/api-docs
 ```
 
 ---
+
+### **Tutorial Swagger**
+<video src="./doc/lokasi-js-tutorial.mp4" controls width="100%"></video>
+
 
 ### **Endpoint API**
 
