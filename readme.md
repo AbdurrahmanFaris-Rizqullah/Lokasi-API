@@ -90,8 +90,7 @@ http://localhost:5000/api-docs
 ---
 
 ### **Tutorial Swagger**
-<video src="./doc/lokasi-js-tutorial.mp4" controls width="100%"></video>
-
+<video src="https://github.com/AbdurrahmanFaris-Rizqullah/Lokasi-API/raw/main/doc/lokasi-js-tutorial.mp4" controls width="100%"></video>
 
 ### **Endpoint API**
 
